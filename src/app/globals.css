@@ -2911,6 +2911,116 @@ button {
    25. PRINT STYLES
    ========================================================================= */
 
+/* ============================================================================
+   26. DARK MODE CONTRAST OVERRIDES
+   ========================================================================= */
+
+[data-theme="dark"] body {
+  background: #0b111b;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .resources,
+[data-theme="dark"] .analytics,
+[data-theme="dark"] .view-container,
+[data-theme="dark"] .workspace__left,
+[data-theme="dark"] .workspace__right {
+  background: #0f1724 !important;
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .chart-card,
+[data-theme="dark"] .forecast-card,
+[data-theme="dark"] .resource-card,
+[data-theme="dark"] .summary-card,
+[data-theme="dark"] .metric-card,
+[data-theme="dark"] .resource-overview-bar,
+[data-theme="dark"] .table-container,
+[data-theme="dark"] .table-wrapper,
+[data-theme="dark"] .settings-content,
+[data-theme="dark"] .settings-sidebar,
+[data-theme="dark"] .map-layers,
+[data-theme="dark"] .map-legend {
+  background: #121c2a !important;
+  border-color: #2f3b4d !important;
+  color: #d8dee8 !important;
+}
+
+[data-theme="dark"] .resources [style*="background: rgb(255, 255, 255)"],
+[data-theme="dark"] .reports [style*="background: rgb(255, 255, 255)"],
+[data-theme="dark"] .analytics [style*="background: rgb(255, 255, 255)"],
+[data-theme="dark"] .view-container [style*="background: rgb(255, 255, 255)"],
+[data-theme="dark"] .resources [style*="background: #ffffff"],
+[data-theme="dark"] .analytics [style*="background: #ffffff"],
+[data-theme="dark"] .view-container [style*="background: #ffffff"] {
+  background: #121c2a !important;
+}
+
+[data-theme="dark"] .resources [style*="background: rgb(248, 250, 252)"],
+[data-theme="dark"] .analytics [style*="background: rgb(248, 250, 252)"],
+[data-theme="dark"] .view-container [style*="background: rgb(248, 250, 252)"],
+[data-theme="dark"] .resources [style*="background: #f8fafc"],
+[data-theme="dark"] .analytics [style*="background: #f8fafc"],
+[data-theme="dark"] .view-container [style*="background: #f8fafc"],
+[data-theme="dark"] .resources [style*="background: rgb(241, 245, 249)"],
+[data-theme="dark"] .analytics [style*="background: rgb(241, 245, 249)"],
+[data-theme="dark"] .view-container [style*="background: rgb(241, 245, 249)"],
+[data-theme="dark"] .resources [style*="background: #f1f5f9"],
+[data-theme="dark"] .analytics [style*="background: #f1f5f9"],
+[data-theme="dark"] .view-container [style*="background: #f1f5f9"] {
+  background: #1a2535 !important;
+}
+
+[data-theme="dark"] .resources [style*="color: rgb(15, 23, 42)"],
+[data-theme="dark"] .analytics [style*="color: rgb(15, 23, 42)"],
+[data-theme="dark"] .view-container [style*="color: rgb(15, 23, 42)"],
+[data-theme="dark"] .resources [style*="color: #0f172a"],
+[data-theme="dark"] .analytics [style*="color: #0f172a"],
+[data-theme="dark"] .view-container [style*="color: #0f172a"],
+[data-theme="dark"] .resources [style*="color: rgb(30, 41, 59)"],
+[data-theme="dark"] .analytics [style*="color: rgb(30, 41, 59)"],
+[data-theme="dark"] .view-container [style*="color: rgb(30, 41, 59)"],
+[data-theme="dark"] .resources [style*="color: #1e293b"],
+[data-theme="dark"] .analytics [style*="color: #1e293b"],
+[data-theme="dark"] .view-container [style*="color: #1e293b"] {
+  color: #d8dee8 !important;
+}
+
+[data-theme="dark"] .resources [style*="color: rgb(51, 65, 85)"],
+[data-theme="dark"] .analytics [style*="color: rgb(51, 65, 85)"],
+[data-theme="dark"] .view-container [style*="color: rgb(51, 65, 85)"],
+[data-theme="dark"] .resources [style*="color: #334155"],
+[data-theme="dark"] .analytics [style*="color: #334155"],
+[data-theme="dark"] .view-container [style*="color: #334155"],
+[data-theme="dark"] .resources [style*="color: rgb(71, 85, 105)"],
+[data-theme="dark"] .analytics [style*="color: rgb(71, 85, 105)"],
+[data-theme="dark"] .view-container [style*="color: rgb(71, 85, 105)"],
+[data-theme="dark"] .resources [style*="color: #475569"],
+[data-theme="dark"] .analytics [style*="color: #475569"],
+[data-theme="dark"] .view-container [style*="color: #475569"] {
+  color: #b7c2d3 !important;
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea,
+[data-theme="dark"] .form-date,
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: #101827 !important;
+  border-color: #334155 !important;
+  color: #d8dee8 !important;
+}
+
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder,
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #7d8aa0 !important;
+}
+
 @media print {
   *,
   *::before,

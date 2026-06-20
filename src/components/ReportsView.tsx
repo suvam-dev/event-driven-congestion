@@ -291,70 +291,54 @@ export default function ReportsView() {
           </div>
         </div>
 
-        {/* Chart 2: Resource Usage Concentric Rings */}
+        {/* Chart 2: Resource Allocation Matrix */}
         <div className="card chart-card">
           <div className="chart-card__header">
             <span className="chart-card__title">Resource Efficiency Allocations</span>
-            <span style={{ fontSize: '10px', color: '#64748b' }}>Hover rings for breakdown</span>
+            <span style={{ fontSize: '10px', color: '#64748b' }}>Hover bars for breakdown</span>
           </div>
 
-          <div style={{ padding: '16px', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'space-around', minHeight: '220px' }}>
-            <svg width={180} height={180} viewBox="0 0 180 180" style={{ transform: 'rotate(-90deg)' }}>
-              {report.donutData.map((d, idx) => {
-                const radius = 40 + idx * 13;
-                const circumference = 2 * Math.PI * radius;
-                const strokeDashoffset = circumference - (d.percentage / 100) * circumference;
-                const isHovered = hoveredDonutRing === idx;
-
-                return (
-                  <g key={d.label}>
-                    {/* Background Ring */}
-                    <circle
-                      cx={90} cy={90} r={radius}
-                      fill="transparent"
-                      stroke="#f1f5f9"
-                      strokeWidth={isHovered ? 10 : 7}
-                      style={{ transition: 'stroke-width 0.2s' }}
-                    />
-                    {/* Active Progress Ring */}
-                    <circle
-                      cx={90} cy={90} r={radius}
-                      fill="transparent"
-                      stroke={d.color}
-                      strokeWidth={isHovered ? 10 : 7}
-                      strokeDasharray={circumference}
-                      strokeDashoffset={strokeDashoffset}
-                      strokeLinecap="round"
-                      style={{ cursor: 'pointer', transition: 'stroke-dashoffset 0.5s, stroke-width 0.2s' }}
-                      onMouseEnter={() => setHoveredDonutRing(idx)}
-                      onMouseLeave={() => setHoveredDonutRing(null)}
-                    />
-                  </g>
-                );
-              })}
-            </svg>
-
-            {/* Donut Legend / Details */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '11px' }}>
-              {report.donutData.map((d, idx) => (
+          <div style={{ padding: '20px 18px', background: '#ffffff', minHeight: '220px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
+            {report.donutData.map((d, idx) => {
+              const isHovered = hoveredDonutRing === idx;
+              return (
                 <div
                   key={d.label}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 8px', borderRadius: '4px',
-                    background: hoveredDonutRing === idx ? '#f8fafc' : 'transparent',
-                    border: hoveredDonutRing === idx ? '1px solid #cbd5e1' : '1px solid transparent',
-                    cursor: 'pointer'
-                  }}
                   onMouseEnter={() => setHoveredDonutRing(idx)}
                   onMouseLeave={() => setHoveredDonutRing(null)}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '150px 1fr 44px',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '8px 10px',
+                    borderRadius: '8px',
+                    background: isHovered ? '#f8fafc' : 'transparent',
+                    border: isHovered ? '1px solid #cbd5e1' : '1px solid transparent',
+                    cursor: 'pointer'
+                  }}
                 >
-                  <span style={{ display: 'inline-block', width: '10px', height: '10px', borderRadius: '50%', background: d.color }}></span>
-                  <span style={{ fontWeight: hoveredDonutRing === idx ? '700' : '500', color: '#334155' }}>
-                    {d.label}: <strong>{d.percentage}%</strong>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', fontWeight: '700', color: '#334155' }}>
+                    <span style={{ width: '10px', height: '10px', borderRadius: '3px', background: d.color, flexShrink: 0 }}></span>
+                    {d.label}
                   </span>
+                  <span style={{ height: '12px', borderRadius: '999px', background: '#f1f5f9', overflow: 'hidden', boxShadow: 'inset 0 0 0 1px rgba(148, 163, 184, 0.16)' }}>
+                    <span
+                      style={{
+                        display: 'block',
+                        height: '100%',
+                        width: `${d.percentage}%`,
+                        background: `linear-gradient(90deg, ${d.color}, ${d.color}cc)`,
+                        borderRadius: '999px',
+                        transition: 'width 0.35s ease, filter 0.2s ease',
+                        filter: isHovered ? 'brightness(1.05)' : 'none'
+                      }}
+                    ></span>
+                  </span>
+                  <strong style={{ fontSize: '12px', color: d.color, textAlign: 'right' }}>{d.percentage}%</strong>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>

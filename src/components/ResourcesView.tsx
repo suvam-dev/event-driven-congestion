@@ -192,9 +192,10 @@ export default function ResourcesView() {
       {/* Alert Banner */}
       {alertMsg && (
         <div style={{
-          position: 'fixed', top: '80px', right: '24px', zIndex: 1000,
+          position: 'fixed', bottom: '24px', right: '24px', zIndex: 10005,
           background: '#0f172a', border: '1px solid #334155', borderLeft: '4px solid #10b981',
           padding: '12px 18px', borderRadius: '8px', color: '#f8fafc', fontSize: '12px',
+          maxWidth: '360px',
           boxShadow: '0 4px 20px rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', gap: '10px'
         }}>
           <span>🛡️</span>

@@ -287,6 +287,18 @@ export default function EventsView() {
     return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
   };
 
+  const getHexPoints = (x: number, y: number, w: number, h: number) => {
+    const cx = x + w / 2;
+    return [
+      [cx, y],
+      [x + w, y + h * 0.25],
+      [x + w, y + h * 0.75],
+      [cx, y + h],
+      [x, y + h * 0.75],
+      [x, y + h * 0.25],
+    ].map(([px, py]) => `${px},${py}`).join(' ');
+  };
+
   return (
     <div className="workspace animate-fade-in">
       {/* Toast notification overlay */}
@@ -564,19 +576,40 @@ export default function EventsView() {
                 {/* 7. Congestion Zones Layer */}
                 {layers.congestion && congestionZones.map((z, i) => {
                   const color = getCongestionColor(z.baseLevel);
+                  const cx = z.x + z.w / 2;
+                  const cy = z.y + z.h / 2;
                   return (
-                    <rect
+                    <g
                       key={`zone-${i}`}
-                      x={z.x} y={z.y} width={z.w} height={z.h} rx={10}
-                      fill={color}
-                      fillOpacity="0.14"
-                      stroke={color}
-                      strokeWidth="1.5"
-                      strokeDasharray="4 2"
                       style={{ cursor: 'help', transition: 'fill 0.4s, stroke 0.4s' }}
                       onMouseEnter={(e) => setTooltip({ title: `${z.name} Congestion`, detail: `Peak Load Capacity Status`, x: e.clientX, y: e.clientY })}
                       onMouseLeave={() => setTooltip(null)}
-                    />
+                    >
+                      <ellipse
+                        cx={cx}
+                        cy={cy}
+                        rx={z.w * 0.58}
+                        ry={z.h * 0.52}
+                        fill={color}
+                        opacity="0.08"
+                      />
+                      <polygon
+                        points={getHexPoints(z.x, z.y, z.w, z.h)}
+                        fill={color}
+                        fillOpacity="0.16"
+                        stroke={color}
+                        strokeWidth="1.75"
+                        strokeDasharray="5 3"
+                      />
+                      <polygon
+                        points={getHexPoints(z.x + z.w * 0.16, z.y + z.h * 0.16, z.w * 0.68, z.h * 0.68)}
+                        fill="transparent"
+                        stroke={color}
+                        strokeWidth="1"
+                        strokeOpacity="0.45"
+                      />
+                      <circle cx={cx} cy={cy} r={Math.min(z.w, z.h) * 0.16} fill={color} opacity="0.12" />
+                    </g>
                   );
                 })}
 
